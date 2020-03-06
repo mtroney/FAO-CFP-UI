@@ -1,0 +1,400 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1.1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+/*** Shopping Sheet - Default Styles ***/
+/*** Elements ***/
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+h3 {
+  font-size: 12px;
+}
+
+p {
+  font-size: 12px;
+  padding-bottom: 5px;
+}
+
+strong {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+em {
+  font-style: italic;
+}
+
+li {
+  font-size: 11px;
+  margin-bottom: 15px;
+}
+
+a,
+a:visited {
+  color: #000;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+/*** Main Container ***/
+
+#sheet {
+  margin-top: 10px;
+  padding-bottom: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0px 10px;
+}
+
+
+/*** Main header ***/
+.main-header {
+  margin-bottom: 5px;
+}
+
+  .main-header #date-stamp {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .main-header .school-heading {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .main-header .pull-right {
+    float: right;
+  }
+
+  .main-header #school-name {
+    margin-bottom: 5px;
+  }
+
+#download-btn {
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  padding: 5px 10px;
+  margin: 0;
+  text-decoration: none;
+  background: #ececec;
+  color: #000;
+  font-family: sans-serif;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out;
+}
+
+  #download-btn:active {
+    background: #cccccc;
+  }
+
+
+/*** Panels ***/
+
+.panel {
+  margin-bottom: 15px;
+  padding: 1px;
+  background-color: #436689;
+  border-radius: 6px;
+}
+
+  .panel.simple {
+    background-color: #fff;
+    border-width: 1.2px;
+    border-style: solid;
+  }
+
+.panel-header {
+  color: #fff;
+  padding: 5px 15px 5px 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.panel-body {
+  background-color: #fff;
+  margin: 2px;
+  padding: 15px 20px 5px 5px
+}
+
+/*** Tables ***/
+table {
+  width: 100%;
+  position: relative;
+  border: 2px solid #4A6686;
+  border-collapse: separate;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+thead th {
+  background-color: #4A6686;
+  color: #FFF;
+  text-align: left;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+table.accent {
+  border: 2px solid #898943;
+}
+
+  table.accent thead th {
+    background-color: #898943;
+  }
+
+td {
+  font-size: 12px;
+  padding: 5px 5px;
+  width: 120px;
+}
+
+tr:nth-child(even) td {
+  background-color: #CCC;
+}
+
+tr td:first-child {
+  width: auto;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 5px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 5px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#costs-table .header td {
+  font-weight: bold;
+  padding-bottom: 10px;
+  width: 150px;
+}
+
+
+/*** Aside - Comparisons  ***/
+.aside-group {
+  padding: 5px;
+  border-color: #436689;
+}
+
+  .aside-group.simple {
+    margin-bottom: 10px;
+    padding: 10px;
+    line-height: 1.75;
+  }
+
+  .aside-group .address-container {
+    line-height: 1.4;
+  }
+
+  .aside-group .info-header h2 {
+    font-size: 11px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+  }
+
+  .aside-group.simple a {
+    color: #000;
+  }
+
+
+#glossary-list ul {
+  margin-top: 10px;
+}
+
+/*** Misc ***/
+.note,
+.no-margin-note {
+  font-size: 11px;
+  font-weight: normal;
+  margin: 5px 0px;
+  clear: both;
+  display: block;
+}
+
+.no-margin-note {
+  margin: 0;
+}
+
+
+.inline-note {
+  display: block;
+  clear: both;
+}
+
+.pad-left {
+  padding-left: 15px !important;
+}
+
+.default-font {
+  color: #000000;
+}
+
+.clearfix {
+  clear: both;
+}
+
+ul#other-options-list {
+  list-style-type: disc;
+  padding: 6px 0 0 8px;
+  -webkit-columns: 1;
+  -moz-columns: 1;
+  columns: 1;
+}
+
+.page-break {
+  page-break-after: always;
+  height: 10px
+}
+
+.indent {
+  padding-left: 10px;
+}
+
+@media print, screen and (min-width: 850px) {
+  #sheet {
+    width: 800px;
+  }
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  section {
+    display: inline-block;
+    float: left;
+    width: 49%;
+  }
+
+  aside {
+    float: right;
+    height: 100%;
+    width: 49%;
+    margin-left: 15px;
+  }
+}
+
+@media print {
+  * {
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .xml-download {
+    display: none !important;
+  }
+}
+/**
+ *
+ * Shopping Sheet - Custom Styles
+ * Customize your school-specific style changes here
+ *
+ */
+
+/**
+========================
+ Custom Colors
+========================
+ */
+/* The following will be the overall color of the report and should
+likely be all set to the same value */
+table, .aside-group {
+  border-color: #900;
+}
+
+thead th, .main-header-panel {
+  background-color: #900;
+  color: #FFF;
+}
+
+/* The following styles a panel as a callout. Currently this is used
+for the "What will you pay for college" callout */
+table.accent {
+  border: 2px solid #900;
+}
+
+  table.accent thead th {
+    background-color: #900;
+    color: #FFF;
+  }

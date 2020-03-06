@@ -1,0 +1,453 @@
+
+<body>
+  <div id="sheet" class="container">
+    <div class="panel main-header-panel">
+        <header class="main-header panel-header">
+            <div class='pull-right'>
+                <div id="date-stamp">{{today |date:'MM/dd/yyyy'}}</div>
+                <div class="xml-download">
+                    <button id="download-btn" type="button" title="Download" (click)= "generateXML()">Download</button>
+                </div>
+            </div>
+            <div class="school-heading">
+                <h1 id="school-name">University of Southern California (USC)</h1>
+                <h3 id="student-name">
+                  {{studentName}},
+                  ({{uscId}})
+                </h3>
+            </div>
+        </header>
+    </div>
+
+    <table id="family-table" cellspacing="0">
+        <thead>
+            <tr>
+                <th colspan="2">Expected Family Contribution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span id="family-fafsa-explain">
+                        <strong>Based on FAFSA</strong><br />
+                        <span class='no-margin-note'>As calculated by the institution using information reported on
+                            the FAFSA or to your institution.</span></span>
+                </td>
+                <td><span class="dollar strong">$</span><span id="family-fafsa-cost"
+                        class="amount strong">{{basedOnFAFSA| number}}</span> <span class="per-year">/ yr</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="family-institution-explain"><strong>Based on Institutional
+                            Methodology</strong><br /><span class='no-margin-note'>Used by most private institutions
+                            in addition
+                            to FAFSA.</span></span>
+                </td>
+                <td><span class="dollar">$</span><span id="family-institution-cost"
+                        class="strong amount">{{basedOnInstitution | number}}</span>
+                    <span class="per-year">/ yr</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table id="costs-table" class="table numbers" cellspacing="0">
+        <thead>
+            <tr>
+                <th colspan="3">Total Cost of Attendance {{accademicYear}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row header">
+                <td class=""></td>
+                <td class="line-value text-center">On Campus Residence</td>
+                <td class="line-value text-center">Off Campus Residence</td>
+            </tr>
+
+            <tr class="row">
+                <td><span class="line-text">Tuition and fees</span></td>
+                <td class="line-value text-center" colspan="2"><span class="dollar">$</span>
+                  <span id="costs-tuition-and-fees" class="amount">{{tuitionandFeesCosts|number}}</span></td>
+            </tr>
+            <tr class="row">
+                <td><span class="line-text">Housing and meals</span></td>
+                <td class="line-value text-center"><span class="dollar">$</span><span
+                        id="costs-housing-and-meals-on-campus" class="amount">{{onCampusHousingCosts|number}}</span></td>
+                <td class="line-value text-center"><span class="dollar">$</span><span
+                        id="costs-housing-and-meals-off-campus" class="amount">{{offCampusHousingCosts|number}}</span></td>
+            </tr>
+            <tr class="row">
+                <td><span class="line-text">Books and supplies</span></td>
+                <td class="line-value text-center" colspan="2"><span class="dollar">$</span><span
+                        id="costs-books-and-supplies" class="amount">{{bookCosts|number}}</span></td>
+            </tr>
+            <tr class="row">
+                <td><span class="line-text">Transportation</span></td>
+                <td class="line-value text-center" colspan="2"><span class="dollar">$</span><span
+                        id="costs-transportation" class="amount">{{transportationCosts|number}}</span></td>
+            </tr>
+            <tr class="row">
+                <td><span class="line-text">Other education costs</span></td>
+                <td class="line-value text-center" colspan="2"><span class="dollar">$</span><span
+                        id="costs-other-education-costs" class="amount">{{otherCosts|number}}</span></td>
+            </tr>
+            <tr>
+                <td><span class="line-text"><span id="costs-total-estimated-cost-explain"
+                            class="line-text strong">Estimated Cost of Attendance</span></span></td>
+                <td class="line-value text-center"><span class="dollar strong">$</span>
+                  <span id="costs-total-estimated-cost-on-campus" class="amount strong">{{totalEstimatedOnCampus |number}}</span>
+                        <span class="per-year">/ yr</span></td>
+                <td class="line-value text-center"><span class="dollar strong">$</span>
+                    <span id="costs-total-estimated-cost-off-campus" class="amount strong">{{totalEstimatedOffCampus|number}}</span>
+                        <span class="per-year">/ yr</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h2>Scholarship and Grant Options</h2>
+    <p>Scholarships and Grants are considered "Gift" aid - no repayment is needed.</p>
+    <section class="content numbers">
+        <table id="scholarships-table" class="table numbers" cellspacing="0">
+            <thead>
+                <tr>
+                    <th colspan="2">Scholarships</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2"><span class="line-text">Merit-Based Scholarships</span></td>
+                </tr>
+                <tr class="row">
+                    <td><span class="indent">Scholarships from your school</span></td>
+                    <td><span class="dollar">$</span><span id="aid-scholarships-school" class="amount">{{schoolScholarship|number}}</span>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td><span class="indent">Scholarships from your state</span></td>
+                    <td><span class="dollar">$</span><span id="aid-scholarships-state" class="amount">{{stateScholarship|number}}</span>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td><span class="line-text indent">Other scholarships</span></td>
+                    <td><span class="dollar">$</span><span id="aid-scholarships-other" class="amount">{{otherScholarship|number}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="line-text">Employer Paid Tuition Benefits</span></td>
+                    <td><span class="dollar">$</span><span id="employer-paid-tuition-benefits"
+                            class="amount">{{employerPaidScholarship|number}}</span></td>
+                </tr>
+                <tr>
+                    <td><span class='strong'>Total Scholarships</span></td>
+                    <td><span class="dollar strong">$</span><span id="aid-total-scholarships"
+                            class='strong'>{{totalScholarship | number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <aside class="aside">
+        <table id="grants-table" class="table numbers" cellspacing="0">
+            <thead>
+                <tr>
+                    <th colspan="2">Grants</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2"><span class="line-text">Need-Based Grant Aid</span></td>
+                </tr>
+                <tr class="row">
+                    <td><span class="line-text indent">Federal Pell Grants</span></td>
+                    <td><span class="dollar">$</span><span id="aid-grants-federal-pell" class="amount">{{federalGrants|number}}</span>
+                    </td>
+                </tr>
+
+                <tr class="row">
+                    <td><span class="line-text indent">Institutional Grants</span></td>
+                    <td><span class="dollar">$</span><span id="aid-grants-institution" class="amount">{{institutionalGrants|number}}</span>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td><span class="line-text indent">State Grants</span></td>
+                    <td><span class="dollar">$</span><span id="aid-grants-state" class="amount">{{stateGrants|number}}</span>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td><span class="line-text">Other forms of grant aid</span></td>
+                    <td><span class="dollar">$</span><span id="aid-grants-other" class="amount">{{otherGrants|number}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="line-text strong">Total Grants</span></td>
+                    <td><span class="dollar strong">$</span>
+                      <span id="aid-total-grants"
+                            class="amount strong">{{totalGrants|number}}</span><span class="per-year">/ yr</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </aside>
+
+    <table id="net-costs-table" class="table numbers accent" cellspacing="0">
+        <thead>
+            <tr>
+                <th colspan="2">College Costs You Will Be Required to Pay</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="line-text strong">Net Costs <br /><span class='no-margin-note'>(Cost of attendance
+                            minus
+                            total grants and scholarships)</span></span>
+                </td>
+                <td><span class="dollar strong">$</span><span id="net-costs-total"
+                        class="amount strong">{{totalNetCost|number}}</span> <span class="per-year">/ yr</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Loan and Work Options to Pay the Net Costs to You</h2>
+    <p>You must repay loans, plus interest and fees.  </p>
+    <section class='content numbers'>
+        <table id="loan-options-table" class="table numbers" cellspacing="0">
+            <thead>
+                <tr>
+                    <th colspan="2">Loan Options<sup>*</sup></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="line-text">Federal Direct Subsidized Loan<br />(<span
+                                id="loan-options-federal-direct-subsidized-rate">X.XX%</span> interest
+                            rate)</span></td>
+                    <td><span class="dollar">$</span><span id="loan-options-federal-direct-subsidized"
+                            class="amount">{{directSubsidizedLoan|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+                <tr>
+                    <td><span class="line-text">Federal Direct Unsubsidized Loan<br /> (<span
+                                id="loan-options-federal-direct-unsubsidized-rate">X.XX%</span> interest
+                            rate)</span></td>
+                    <td><span class="dollar">$</span><span id="loan-options-federal-direct-unsubsidized"
+                            class="amount">{{directUnsubsidizedLoan|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="line-text">Private Loan<br /> (<span
+                                id="loan-options-private-loan-rate">X.XX%</span> interest rate)</span></td>
+                    <td><span class="dollar">$</span><span id="loan-options-private-loan"
+                            class="amount">{{privateLoan|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+                <tr>
+                    <td><span class="line-text">Institutional Loan<br /> (<span
+                                id="loan-options-institutional-loan-rate">X.XX%</span> interest rate)</span>
+                    </td>
+                    <td><span class="dollar">$</span><span id="loan-options-institutional-loan"
+                            class="amount">{{institutionLoan|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+                <tr>
+                    <td><span class="line-text">Other Aid That Must Be Repaid</span></td>
+                    <td><span class="dollar">$</span><span id="loan-options-other-aid-that-must-be-repaid"
+                            class="amount">{{otherAid|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <em>In addition to the loans above, parents may also apply for the following: </em>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="line-text">Parent Plus Federal Loan<br /> (<span
+                                id="loan-options-parent-plus-federal-loan-rate">X.XX%</span> interest
+                            rate)</span></td>
+                    <td><span class="dollar">$</span><span id="loan-options-parent-plus-federal-loan"
+                            class="amount">{{parentPlusLoan|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+                <tr>
+                    <td><span class="line-text strong">Total Loan Options</span></td>
+                    <td><span class="dollar strong">$</span>
+                      <span id="loan-options-total" class="amount strong">{{totalloanOptions|number}}</span>
+                            <span class="per-year">/ yr</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <aside class='aside'>
+        <table id="work-options-table" class="table numbers"
+            cellspacing="0">
+            <thead>
+                <tr>
+                    <th colspan="2">Work Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="line-text">Work-study <span class="inline-note">(Federal, state, or
+                                institutional)</span></span></td>
+                    <td><span class="dollar">$</span><span id="work-options-work-study" class="amount">{{workStudy|number}}</span>
+                        <span class="per-year">/ yr</span></td>
+                </tr>
+                <tr>
+                    <td><span class="line-text pad-left">Hours Per Week</span></td>
+                    <td><span id="work-options-hours-per-week" class="amount">{{workStudyHoursPerWeek|number}}</span><span class="per-year">/ wk</span></td>
+                </tr>
+                <tr>
+                    <td><span class="line-text">Other Campus Job</span></td>
+                    <td><span class="dollar">$</span><span id="work-options-other-campus-job"
+                            class="amount">{{otherCampusJob|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+                <tr>
+                    <td><span class="line-text strong">Total Work Options</span></td>
+                    <td><span class="dollar strong">$</span>
+                      <span id="work-options-total" class="amount strong">{{totalWorkOptions|number}}</span> <span class="per-year">/ yr</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="aside-group panel simple loans" style='min-height: 147px;'>
+            <header class="header info-header">
+                <h2 class="default-font">For More Information</h2>
+            </header>
+            <div class="address-container">
+
+                <span id="info-school-name" class="address-name">University of Southern California (USC)</span>
+                <br>
+                <span id="info-financial-aid-office" class="address-name">Financial Aid Office</span>
+                <div class="address">
+                    <div id="info-address-line-1" class="address-line">700 Childs Way</div>
+                    <div id="info-address-line-2" class="address-line"></div>
+                    <div id="info-address-city-state-zip" class="address-line">Los Angeles, CA 90089-0914</div>
+                    <div id="info-address-phone" class="address-line">Telephone: (123) 740-4444</div>
+                    <div id="info-address-email" class="address-line">E-mail: financialaid@usc.edu</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="clearfix page-break"></div>
+
+    <section class="content numbers">
+        <div class="aside-group panel simple loans" style='min-height: 200px;'>
+            <header class="header info-header">
+                <h2 class="default-font">* Loan Amounts</h2>
+            </header>
+            <p>Note that the amounts listed
+                are the maximum available to you – you are allowed and encouraged to borrow less than the
+                maximum amount.To learn about loan repayment choices and work out your Federal Loan monthly payment, go
+                to:
+                <a target="_blank"
+                    href="https://studentaid.ed.gov/repay-loans/understand/plans">https://studentaid.ed.gov/repay-loans/understand/plans</a>.
+            </p>
+        </div>
+        <div class="aside-group panel simple loans" style='min-height: 200px;'>
+            <header class="header info-header">
+                <h2 class="default-font">Next steps</h2>
+            </header>
+        </div>
+    </section>
+    <aside class="aside">
+        <div class="aside-group panel simple loans" style='min-height: 200px;'>
+            <header class="header info-header">
+                <h2 class="default-font">Other Potential Education Benefits</h2>
+            </header>
+            <ul id="other-options-list">
+                <li><strong>American Opportunity Tax Credit:</strong> Parents or students may qualify to
+                    receive up to $2,500 by claiming the American Opportunity Tax Credit on their tax return
+                    during the following calendar year.</li>
+                <li><strong>Military and/or National Service Benefits</strong></li>
+            </ul>
+        </div>
+        <div class="aside-group panel simple loans" style='min-height: 200px;'>
+            <header class="header info-header">
+                <h2 class="default-font">Customized Information from USC</h2>
+                <ul>
+                  <li>{{message1}}</li>
+                  <li>{{message2}}</li>
+                </ul>
+            </header>
+        </div>
+    </aside>
+
+    <div class="clearfix"></div>
+
+    <table id="glossary" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Glossary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <ul id="glossary-list">
+                        <li id="term-coa">
+                            <strong>Cost of Attendance (COA):</strong> The total amount (not including grants and
+                            scholarships) that it will cost you to go to school during the 2020–21 school year. COA
+                            includes tuition and fees; housing and meals;
+                            and allowances for books, supplies, transportation, loan fees, and dependent care. It
+                            also includes miscellaneous and personal expenses, such as an allowance for the rental
+                            or purchase of a personal computer; costs related
+                            to a disability; and reasonable costs for eligible study-abroad programs. For students
+                            attending less than half-time, the COA includes tuition and fees; an allowance for
+                            books, supplies, and transportation; and dependent
+                            care expenses.
+                        </li>
+                        <li id="term-expected-family-contribution">
+                            <strong>Expected Family Contribution:</strong> A number used by your school to
+                            calculate the amount of federal student aid you are eligible to receive. It is based on
+                            the financial information provided in your Free Application for Federal student Aid
+                            (FAFSA). This is not the amount of money your family will have to pay for college, nor
+                            is it the amount of federal student aid you will receive.
+                        </li>
+                        <li id="term-federal-work-study">
+                            <strong>Federal Work-Study:</strong> A federal student aid program that provides
+                            part-time employment while the student is enrolled in school to help pay his or her
+                            education expenses. The student must seek out and apply for work-study jobs at his or
+                            her school. The student will be paid directly for the hours he or she works and the
+                            amount he or she earns cannot exceed the total amount awarded by the school for the
+                            award year. The availability of work-study jobs varies by school.
+                        </li>
+                        <li id="term-grants-and-scholarships">
+                            <strong>Grants and Scholarships:</strong> Student aid funds that do not have to be
+                            repaid. Grants are often need-based, while scholarships are usually merit-based.
+                            Occasionally you might have to pay back part or all
+                            of a grant if, for example, you withdraw from school before finishing a semester.
+                        </li>
+
+                        <li id="term-option-loans">
+                            <strong>Loans:</strong> Borrowed money that must be repaid with interest. Loans from the
+                            federal government typically have a lower interest rate than loans from private lenders.
+                            Federal loans, listed from most advantageous
+                            to least advantageous, are called Direct Subsidized Loans, Direct Unsubsidized Loans,
+                            and Parent PLUS Loans. You can find more information about federal loans at
+                            StudentAid.gov.
+                            <ul>
+                                <li><strong>Direct Subsidized Loan:</strong> Loans that The U.S. Department of
+                                    Education pays the interest on
+                                    while you’re in school at least half-time, for the first six months after you
+                                    leave school (referred to as a grace period*), and during a period of deferment
+                                    (a postponement of loan payments).</li>
+                                <li><strong>Direct Unsubsidized Loan:</strong> Loans that the borrower is
+                                    responsible for paying the interest on during all periods. If you choose not to
+                                    pay the interest while you are in school and during grace periods and deferment
+                                    or forbearance periods, your interest will accrue (accumulate) and be
+                                    capitalized (that is, your interest will be added to the principal amount of
+                                    your loan).</li>
+                                <li><strong>Parent Plus Loan:</strong> A loan available to the parents of dependent undergraduate students for which the borrower is fully responsible for paying the interest regardless of the loan status.</li>
+                                <li><strong>Private Loan:</strong> A nonfederal loan made by a lender such as a bank, credit union, state agency, or school.</li>
+                            </ul>
+                        </li>
+                        <li id="term-net-price">
+                            <strong>Net Cost:</strong> An estimate of the actual cost that a student and his or her family
+                            need to pay in a given year to cover education expenses for the student to attend a
+                            particular school. Net price is determined by taking the institution's cost of
+                            attendance and subtracting any grants and scholarships for which the student may be
+                            eligible.
+                        </li>
+                        <li class='strong'>For more information visit <a href="https://studentaid.gov" target="_blank">https://studentaid.gov</a>.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
