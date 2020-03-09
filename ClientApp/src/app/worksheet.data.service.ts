@@ -11,10 +11,10 @@ export class WorksheetDataService {
   constructor(private http: HttpClient) {
 
   }
-  getWorksheetDataForStudent(uscid: string, academicYear: string): Observable<ShoppingSheetModel> {
+  getWorksheetDataForStudent(uscid: string, academicYear: string): Observable<any> {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const uri =  environment.apiUrl + 'CollegeFinancePlanningWorksheet/GetStudentWorksheetData/' + uscid + '/' + academicYear;
-    return this.http.get<ShoppingSheetModel>(uri, { headers });
+    return this.http.get<any>(uri, { headers });
   }
 }

@@ -12,8 +12,8 @@
             <div class="school-heading">
                 <h1 id="school-name">University of Southern California (USC)</h1>
                 <h3 id="student-name">
-                  {{studentName}},
-                  ({{uscId}})
+                  {{worksheet.studentName}},
+                  ({{worksheet.usCiD}})
                 </h3>
             </div>
         </header>
@@ -53,7 +53,7 @@
     <table id="costs-table" class="table numbers" cellspacing="0">
         <thead>
             <tr>
-                <th colspan="3">Total Cost of Attendance {{accademicYear}}</th>
+                <th colspan="3">Total Cost of Attendance {{worksheet.academicYear}}</th>
             </tr>
         </thead>
         <tbody>
@@ -66,29 +66,29 @@
             <tr class="row">
                 <td><span class="line-text">Tuition and fees</span></td>
                 <td class="line-value text-center" colspan="2"><span class="dollar">$</span>
-                  <span id="costs-tuition-and-fees" class="amount">{{tuitionandFeesCosts|number}}</span></td>
+                  <span id="costs-tuition-and-fees" class="amount">{{worksheet.tuitionAndFees|number}}</span></td>
             </tr>
             <tr class="row">
                 <td><span class="line-text">Housing and meals</span></td>
                 <td class="line-value text-center"><span class="dollar">$</span><span
-                        id="costs-housing-and-meals-on-campus" class="amount">{{onCampusHousingCosts|number}}</span></td>
+                        id="costs-housing-and-meals-on-campus" class="amount">{{worksheet.housingAndMeals|number}}</span></td>
                 <td class="line-value text-center"><span class="dollar">$</span><span
-                        id="costs-housing-and-meals-off-campus" class="amount">{{offCampusHousingCosts|number}}</span></td>
+                        id="costs-housing-and-meals-off-campus" class="amount">{{worksheet.housingAndMeals|number}}</span></td>
             </tr>
             <tr class="row">
                 <td><span class="line-text">Books and supplies</span></td>
                 <td class="line-value text-center" colspan="2"><span class="dollar">$</span><span
-                        id="costs-books-and-supplies" class="amount">{{bookCosts|number}}</span></td>
+                        id="costs-books-and-supplies" class="amount">{{worksheet.booksAndSupplies|number}}</span></td>
             </tr>
             <tr class="row">
                 <td><span class="line-text">Transportation</span></td>
                 <td class="line-value text-center" colspan="2"><span class="dollar">$</span><span
-                        id="costs-transportation" class="amount">{{transportationCosts|number}}</span></td>
+                        id="costs-transportation" class="amount">{{worksheet.transportation|number}}</span></td>
             </tr>
             <tr class="row">
                 <td><span class="line-text">Other education costs</span></td>
                 <td class="line-value text-center" colspan="2"><span class="dollar">$</span><span
-                        id="costs-other-education-costs" class="amount">{{otherCosts|number}}</span></td>
+                        id="costs-other-education-costs" class="amount">{{worksheet.otherEducationCosts|number}}</span></td>
             </tr>
             <tr>
                 <td><span class="line-text"><span id="costs-total-estimated-cost-explain"
@@ -159,18 +159,18 @@
                 </tr>
                 <tr class="row">
                     <td><span class="line-text indent">Federal Pell Grants</span></td>
-                    <td><span class="dollar">$</span><span id="aid-grants-federal-pell" class="amount">{{federalGrants|number}}</span>
+                    <td><span class="dollar">$</span><span id="aid-grants-federal-pell" class="amount">{{worksheet.pellGrant|number}}</span>
                     </td>
                 </tr>
 
                 <tr class="row">
                     <td><span class="line-text indent">Institutional Grants</span></td>
-                    <td><span class="dollar">$</span><span id="aid-grants-institution" class="amount">{{institutionalGrants|number}}</span>
+                    <td><span class="dollar">$</span><span id="aid-grants-institution" class="amount">{{worksheet.universityGrants|number}}</span>
                     </td>
                 </tr>
                 <tr class="row">
                     <td><span class="line-text indent">State Grants</span></td>
-                    <td><span class="dollar">$</span><span id="aid-grants-state" class="amount">{{stateGrants|number}}</span>
+                    <td><span class="dollar">$</span><span id="aid-grants-state" class="amount">{{worksheet.stateGrants|number}}</span>
                     </td>
                 </tr>
                 <tr class="row">
@@ -283,7 +283,7 @@
                 <tr>
                     <td><span class="line-text">Work-study <span class="inline-note">(Federal, state, or
                                 institutional)</span></span></td>
-                    <td><span class="dollar">$</span><span id="work-options-work-study" class="amount">{{workStudy|number}}</span>
+                    <td><span class="dollar">$</span><span id="work-options-work-study" class="amount">{{worksheet.workStudy|number}}</span>
                         <span class="per-year">/ yr</span></td>
                 </tr>
                 <tr>
@@ -359,8 +359,8 @@
             <header class="header info-header">
                 <h2 class="default-font">Customized Information from USC</h2>
                 <ul>
-                  <li>{{message1}}</li>
-                  <li>{{message2}}</li>
+                  <li>{{worksheet.message1}}</li>
+                  <li>{{worksheet.message2}}</li>
                 </ul>
             </header>
         </div>

@@ -18,31 +18,31 @@ export class AppComponent implements OnInit  {
   worksheet: ShoppingSheetModel;
   isLoading: boolean;
   basedOnFAFSA = 0;
-  basedOnInstitution = 0;
-  tuitionandFeesCosts = 0;
-  onCampusHousingCosts = 0;
-  offCampusHousingCosts = 0;
-  bookCosts = 0;
-  transportationCosts = 0;
-  otherCosts = 0;
-  totalEstimatedOnCampus = 0;
-  totalEstimatedOffCampus = 0;
-  schoolScholarship = 0;
-  stateScholarship = 0;
-  otherScholarship = 0;
-  employerPaidScholarship = 0;
-  totalScholarship = 0;
-  federalGrants = 0;
-  institutionalGrants = 0;
-  stateGrants = 0;
-  otherGrants = 0;
-  totalGrants = 0;
-  totalNetCost = 0;
-  directSubsidizedLoan = 0;
-  directUnsubsidizedLoan = 0;
-  privateLoan = 0;
-  institutionLoan = 0;
-  otherAid = 0;
+  basedOnInstitution?: number;
+  tuitionandFeesCosts?: number;
+  onCampusHousingCosts?: number;
+  offCampusHousingCosts?: number;
+  bookCosts?: number;
+  transportationCosts?: number;
+  otherCosts?: number;
+  totalEstimatedOnCampus?: number;
+  totalEstimatedOffCampus?: number;
+  schoolScholarship?: number;
+  stateScholarship?: number;
+  otherScholarship?: number;
+  employerPaidScholarship?: number;
+  totalScholarship?: number;
+  federalGrants?: number;
+  institutionalGrants?: number;
+  stateGrants?: number;
+  otherGrants?: number;
+  totalGrants?: number;
+  totalNetCost?: number;
+  directSubsidizedLoan?: number;
+  directUnsubsidizedLoan?: number;
+  privateLoan?: number;
+  institutionLoan?: number;
+  otherAid?: number;
   parentPlusLoan = 0;
   totalloanOptions = 0;
   workStudy = 0;
@@ -57,11 +57,12 @@ export class AppComponent implements OnInit  {
     this.today = new Date();
     this.studentNumber = AppConstants.USCID;
     this.accademicYear = AppConstants.accademicYear;
-    this.worksheetData.getWorksheetDataForStudent(this.studentNumber, this.accademicYear)
-    .subscribe(data => {this.worksheet = data; console.log(data); },   error => {
-      console.log(error);
-      this.calculateTotals();
-  });
+    this.tuitionandFeesCosts=0;
+    // this.worksheetData.getWorksheetDataForStudent(this.studentNumber, this.accademicYear)
+    // .subscribe(data => {this.worksheet = data; console.log(data); },   error => {
+    //   console.log(error);
+    //   this.calculateTotals();
+  // });
   }
 
   //  Check NgRx cache for Worksheet Data.  If it's empty
@@ -71,12 +72,12 @@ export class AppComponent implements OnInit  {
     this.worksheetData
     .getWorksheetDataForStudent(this.studentNumber, this.accademicYear)
     .subscribe(data => {
-      this.worksheet = data;
-      console.log(data);},
+      this.worksheet = data;this.calculateTotals();
+      console.log(data); },
         error => {
       console.log(error);
     });
-    this.calculateTotals();
+    
     this.isLoading = false;
   }
 
@@ -107,10 +108,10 @@ export class AppComponent implements OnInit  {
   + 0 ; // Other Grants
 
 // // Scholarships
-// this.worksheet.totalScholarship =
+ this.totalScholarship =
   this.schoolScholarship
   + 0 // School Scholarship
-  + this.worksheet.otherScholarships,
+  + this.worksheet.otherScholarships
   + 0; // this.worksheet.employerPaidScholarship;
 
 // // Loan Options
